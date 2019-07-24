@@ -7,6 +7,16 @@ return [
 
     'router' => [
         'routes' => [
+            'home' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route'    => '/',
+                    'defaults' => [
+                        'controller' => Controller\DashboardController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
             'country' => [
                 'type'    => Segment::class,
                 'options' => [
