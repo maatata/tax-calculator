@@ -15,6 +15,7 @@ mysqldump.sql file is the database which needs to be imported to mysql database 
 
 A file with the following content needs to be created in /config/autoload/local.php
 
+```
 <?php
 return [
     'db' => [
@@ -22,6 +23,7 @@ return [
         'password' => 'database password',
     ],
 ];
+```
 
 
 and database username and password of the mysql database user needs to be placed in this file accordingly.
