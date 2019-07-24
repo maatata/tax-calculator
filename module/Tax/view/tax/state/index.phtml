@@ -1,0 +1,34 @@
+<?php
+// module/Tax/view/tax/state/index.phtml:
+
+$title = 'States';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('state', ['action' => 'add']) ?>">Add new state</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Initial</th>
+    <th>Name</th>
+    <th>Country</th>
+    <th>Overall Collected Tax</th>
+    <th>Average Collected Tax</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($states as $state) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($state->initial) ?></td>
+        <td><?= $this->escapeHtml($state->name) ?></td>
+        <td><?= $this->escapeHtml($state->country_name) ?></td>
+        <td><?= $this->escapeHtml($state->overall_collected_tax) ?></td>
+        <td><?= $this->escapeHtml($state->average_collected_tax) ?></td>
+        <td>
+            <a href="<?= $this->url('state', ['action' => 'edit', 'id' => $state->id]) ?>">Edit</a>
+            <a href="<?= $this->url('state', ['action' => 'delete', 'id' => $state->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

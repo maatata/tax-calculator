@@ -1,0 +1,62 @@
+<?php
+$title = 'Edit County';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$county = $form->get('name');
+$county->setAttribute('class', 'form-control');
+$county->setAttribute('placeholder', 'Name');
+
+$initial = $form->get('initial');
+$initial->setAttribute('class', 'form-control');
+$initial->setAttribute('placeholder', 'Initial');
+
+// This provides a default CSS class and placeholder text for the state element:
+$state = $form->get('state_id');
+$state->setAttribute('class', 'form-control');
+$state->setAttribute('placeholder', 'State');
+
+$tax_rate = $form->get('tax_rate');
+$tax_rate->setAttribute('class', 'form-control');
+$tax_rate->setAttribute('placeholder', 'Tax Rate');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('county', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($county) ?>
+    <?= $this->formElement($county) ?>
+    <?= $this->formElementErrors()->render($county, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($initial) ?>
+    <?= $this->formElement($initial) ?>
+    <?= $this->formElementErrors()->render($initial, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($state) ?>
+    <?= $this->formElement($state) ?>
+    <?= $this->formElementErrors()->render($state, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($tax_rate) ?>
+    <?= $this->formElement($tax_rate) ?>
+    <?= $this->formElementErrors()->render($tax_rate, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

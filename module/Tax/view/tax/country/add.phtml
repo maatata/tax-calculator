@@ -1,0 +1,43 @@
+<?php
+$title = 'Add new country';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+// This provides a default CSS class and placeholder text for the name element:
+$country = $form->get('name');
+$country->setAttribute('class', 'form-control');
+$country->setAttribute('placeholder', 'Country Name');
+
+// This provides a default CSS class and placeholder text for the initial element:
+$initial = $form->get('initial');
+$initial->setAttribute('class', 'form-control');
+$initial->setAttribute('placeholder', 'Initial');
+
+// This provides CSS classes for the submit button:
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('country', ['action' => 'add']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<?php // Wrap the elements in divs marked as form groups, and render the
+      // label, element, and errors separately within ?>
+<div class="form-group">
+    <?= $this->formLabel($country) ?>
+    <?= $this->formElement($country) ?>
+    <?= $this->formElementErrors()->render($country, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($initial) ?>
+    <?= $this->formElement($initial) ?>
+    <?= $this->formElementErrors()->render($initial, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

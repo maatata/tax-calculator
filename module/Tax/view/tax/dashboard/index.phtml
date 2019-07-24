@@ -1,0 +1,87 @@
+<?php
+// module/Tax/view/tax/dashboard/index.phtml:
+
+$title = 'Dashboard';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Average tax rate per country</h3>
+
+        <table class="table">
+            <tr>
+                <th>Country</th>
+                <th>Average Tax Rate (%)</th>
+            </tr>
+            <?php foreach ($countries_average_tax_rates as $country) : ?>
+                <tr>
+                    <td><?= $this->escapeHtml($country->name) ?></td>
+                    <td><?= $this->escapeHtml($country->average_tax_rate) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table> 
+    </div>
+
+    <div class="col-md-6">
+        <h3>Collected taxes per country</h3>
+
+        <table class="table">
+            <tr>
+                <th>Country</th>
+                <th>Overall Collected Taxes</th>
+                <th>Average Collected Taxes</th>
+            </tr>
+            <?php foreach ($countries_collected_taxes as $country) : ?>
+                <tr>
+                    <td><?= $this->escapeHtml($country->name) ?></td>
+                    <td><?= $this->escapeHtml($country->overall_collected_tax) ?></td>
+                    <td><?= $this->escapeHtml($country->average_collected_tax) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table> 
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Average tax rate per state</h3>
+
+        <table class="table">
+            <tr>
+                <th>State</th>
+                <th>Country</th>
+                <th>Average Tax Rate (%)</th>
+            </tr>
+            <?php foreach ($states_average_tax_rates as $state) : ?>
+                <tr>
+                    <td><?= $this->escapeHtml($state->name) ?></td>
+                    <td><?= $this->escapeHtml($state->country_name) ?></td>
+                    <td><?= $this->escapeHtml($state->average_tax_rate) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table> 
+    </div>
+
+    <div class="col-md-6">
+        <h3>Collected taxes per state</h3>
+
+        <table class="table">
+            <tr>
+                <th>State</th>
+                <th>Country</th>
+                <th>Overall Collected Taxes</th>
+                <th>Average Collected Taxes</th>
+            </tr>
+            <?php foreach ($states_collected_taxes as $state) : ?>
+                <tr>
+                    <td><?= $this->escapeHtml($state->name) ?></td>
+                    <td><?= $this->escapeHtml($state->country_name) ?></td>
+                    <td><?= $this->escapeHtml($state->overall_collected_tax) ?></td>
+                    <td><?= $this->escapeHtml($state->average_collected_tax) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table> 
+    </div>
+</div>

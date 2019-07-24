@@ -1,0 +1,38 @@
+<?php
+// module/Tax/view/tax/county/index.phtml:
+
+$title = 'Counties';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('county', ['action' => 'add']) ?>">Add new county</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Initial</th>
+    <th>Name</th>
+    <th>State</th>
+    <th>Country</th>
+    <th>Tax Rate (%)</th>
+    <th>Overall Collected Tax</th>
+    <th>Average Collected Tax</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($counties as $county) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($county->initial) ?></td>
+        <td><?= $this->escapeHtml($county->name) ?></td>
+        <td><?= $this->escapeHtml($county->state_name) ?></td>
+        <td><?= $this->escapeHtml($county->country_name) ?></td>
+        <td><?= $this->escapeHtml($county->tax_rate) ?></td>
+        <td><?= $this->escapeHtml($county->overall_collected_tax) ?></td>
+        <td><?= $this->escapeHtml($county->average_collected_tax) ?></td>
+        <td>
+            <a href="<?= $this->url('county', ['action' => 'edit', 'id' => $county->id]) ?>">Edit</a>
+            <a href="<?= $this->url('county', ['action' => 'delete', 'id' => $county->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

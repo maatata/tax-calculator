@@ -1,0 +1,44 @@
+<?php
+$title = 'Add new payment';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+// This provides a default CSS class and placeholder text for the name element:
+$payment = $form->get('amount');
+$payment->setAttribute('class', 'form-control');
+$payment->setAttribute('placeholder', 'Amount');
+
+// This provides a default CSS class and placeholder text for the county element:
+$county = $form->get('county_id');
+$county->setAttribute('class', 'form-control');
+$county->setAttribute('placeholder', 'County');
+
+// This provides CSS classes for the submit button:
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('payment', ['action' => 'add']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<?php // Wrap the elements in divs marked as form groups, and render the
+      // label, element, and errors separately within ?>
+<div class="form-group">
+    <?= $this->formLabel($payment) ?>
+    <?= $this->formElement($payment) ?>
+    <?= $this->formElementErrors()->render($payment, ['class' => 'help-block']) ?>
+</div>
+
+
+<div class="form-group">
+    <?= $this->formLabel($county) ?>
+    <?= $this->formElement($county) ?>
+    <?= $this->formElementErrors()->render($county, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

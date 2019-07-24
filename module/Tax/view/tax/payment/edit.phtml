@@ -1,0 +1,42 @@
+<?php
+$title = 'Edit Payment';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$payment = $form->get('amount');
+$payment->setAttribute('class', 'form-control');
+$payment->setAttribute('placeholder', 'Name');
+
+// This provides a default CSS class and placeholder text for the county element:
+$county = $form->get('county_id');
+$county->setAttribute('class', 'form-control');
+$county->setAttribute('placeholder', 'County');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('payment', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($payment) ?>
+    <?= $this->formElement($payment) ?>
+    <?= $this->formElementErrors()->render($payment, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($county) ?>
+    <?= $this->formElement($county) ?>
+    <?= $this->formElementErrors()->render($county, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();
